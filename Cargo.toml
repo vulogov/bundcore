@@ -1,0 +1,16 @@
+[package]
+name = "bundcore"
+version = "0.1.0"
+edition = "2021"
+description = "BUND programming language parser"
+license-file = "LICENSE"
+repository = "https://github.com/vulogov/bundcore"
+categories = ["parser-implementations"]
+keywords = ["language", "stack", "concatenative", "lambda", "dynamic"]
+
+[dependencies]
+bund_language_parser = ">=0.*.*"
+easy-error = "1.0.0"
+nanoid = "0.4.0"
+rust_dynamic = ">=0.*.*"
+rust_multistackvm = ">=0.*.*"
