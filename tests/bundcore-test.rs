@@ -20,7 +20,7 @@ const TEST3: &str = r#"
 
 const TEST4: &str = r#"
 //
-// This is BUND Hello World program
+// This is BUND stack test program
 //
 "Test value" 41 42
 "#;
