@@ -2,7 +2,7 @@
 name = "bundcore"
 version = "0.1.0"
 edition = "2021"
-description = "BUND programming language parser"
+description = "BUND programming language API"
 license-file = "LICENSE"
 repository = "https://github.com/vulogov/bundcore"
 categories = ["parser-implementations"]
