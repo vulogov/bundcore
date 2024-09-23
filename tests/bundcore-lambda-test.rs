@@ -40,6 +40,34 @@ true {
 } while
 "#;
 
+const TEST5L: &str = r#"
+//
+// This is test of lambda registration feature
+//
+:FourtyTwo {
+    "This is message from lambda that leaves 42 on stack"
+    println     // We print message
+    42          // We leave 42 on stack
+} register
+// Then we execute the named lambda as any other function
+FourtyTwo
+"#;
+
+const TEST6L: &str = r#"
+//
+// This is test of lambda registration feature
+//
+:FourtyTwo {
+    "This is message from lambda that leaves 42 on stack"
+    println     // We print message
+    42          // We leave 42 on stack
+} register
+// But let's create an alias for our named lambda
+:FourtyTwo :answer alias
+// Then we execute the named lambda as any other function using alias
+answer
+"#;
+
 #[cfg(test)]
 mod tests {
     #![allow(unused_imports)]
@@ -73,6 +101,20 @@ mod tests {
     fn test_run_lambda_while() {
         let mut bc = Bund::new();
         let val = bc.run(TEST4L).expect("Fail to parse BUND program");
+        assert_eq!(val.expect("Expecting value").cast_int().unwrap(), 42 as i64);
+    }
+
+    #[test]
+    fn test_run_lambda_register() {
+        let mut bc = Bund::new();
+        let val = bc.run(TEST5L).expect("Fail to parse BUND program");
+        assert_eq!(val.expect("Expecting value").cast_int().unwrap(), 42 as i64);
+    }
+
+    #[test]
+    fn test_run_lambda_register_and_alias() {
+        let mut bc = Bund::new();
+        let val = bc.run(TEST6L).expect("Fail to parse BUND program");
         assert_eq!(val.expect("Expecting value").cast_int().unwrap(), 42 as i64);
     }
 
