@@ -5,7 +5,7 @@ use easy_error::{Error, bail};
 
 impl Bund {
     pub fn eval<N: AsRef<str> + ToString>(&mut self, value: N) -> Result<&mut Bund, Error> {
-        let source = value.to_string();
+        let source = format!("{}\n", value.to_string());
         match bund_parse(&source) {
             Ok(words) => {
                 for word in words {
