@@ -13,6 +13,9 @@ pub mod bundcore_init_stdlib;
 pub mod bundcore_vm_bootstrap;
 pub mod bundcore_vm_ephemeral;
 
+pub mod common;
+pub mod common_get_data;
+
 pub type BundInitFn  = fn(&mut bundcore::Bund) -> Result<&mut bundcore::Bund, Error>;
 
 lazy_static! {
