@@ -40,4 +40,17 @@ impl Bund {
         drop(stdlib);
         Ok(self)
     }
+
+    pub fn run_bootstrap(&mut self, name: String, script: String) -> Result<&mut Bund, Error> {
+        match self.eval(script) {
+            Ok(_) => {
+                log::debug!("BUND instance bootstrapped {} for {}", &name, self.id);
+            },
+            Err(err) => {
+                log::error!("BUND bootstrap {} initialized failed for {}", &name, self.id);
+                bail!("BOOTSTRAP failed: {}", err);
+            }
+        }
+        Ok(self)
+    }
 }

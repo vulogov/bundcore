@@ -1,5 +1,6 @@
 extern crate log;
 use crate::bundvm::*;
+use crate::bundcore::Bund;
 use easy_error::{Error, bail};
 
 impl BundVM {
@@ -29,6 +30,30 @@ impl BundVM {
                 None => bail!("Error getting script for: {}", &name),
             };
             match self.run_bootstrap(name.clone(), script.to_string()) {
+                Ok(_) => {},
+                Err(err) => {
+                    drop(bs);
+                    bail!("Error running bootstrap {}: {}", name.clone(), err);
+                }
+            }
+        }
+        drop(bs);
+        Ok(self)
+    }
+
+    pub fn bootstrap_instance(&mut self, bund: &mut Bund) -> Result<&mut BundVM, Error> {
+        let bs = match BOOTSTRAP.lock() {
+            Ok(bs) => bs,
+            Err(err) => {
+                bail!("Error locking BOOSTRAP handler for BundVM: {}", err);
+            }
+        };
+        for name in bs.clone().into_keys().collect::<Vec<_>>() {
+            let script = match bs.get(&name) {
+                Some(script) => script,
+                None => bail!("Error getting script for: {}", &name),
+            };
+            match bund.run_bootstrap(name.clone(), script.to_string()) {
                 Ok(_) => {},
                 Err(err) => {
                     drop(bs);
