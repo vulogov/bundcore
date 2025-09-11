@@ -36,3 +36,4 @@ Function name | Description |
 | Bund::new() | Create and initialize interface to Bund parser and VM |
 | Bund::eval() | Evaluate the code passed as string and return a reference to Bund object or Error |
 | Bund::run() | Evaluate the code passed as string and return ether value stored in Workbench or if Workbench is empty, stored on top of the stack |
+| Bund::init_stdlib() | Run standard library initialization routine |

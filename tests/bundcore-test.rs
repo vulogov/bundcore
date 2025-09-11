@@ -1,5 +1,6 @@
 use easy_error::{Error};
 
+use bundcore;
 use bundcore::bundcore::Bund;
 
 const TEST1: &str = r#"
@@ -69,7 +70,13 @@ mod tests {
     #[test]
     fn test_run3_init_stdlib() {
         let mut bc = Bund::new();
-        let _ = bc.init_stdlib("test", init_stdlib).unwrap();
+        let _ = bc.init_stdlib("test".to_string(), init_stdlib).unwrap();
+    }
+
+    #[test]
+    fn test_run4_init_stdlib() {
+        bundcore::add_stdlib("test".to_string(), init_stdlib).unwrap();
+        let _bc = Bund::new();
     }
 
 }

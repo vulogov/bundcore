@@ -1,3 +1,5 @@
+extern crate log;
+
 use nanoid::nanoid;
 use rust_multistackvm::multistackvm::VM;
 
@@ -23,7 +25,13 @@ impl Bund {
     /// Create and initialize  Bund
     ///
     pub fn new() -> Self {
-        let res = Bund::init();
+        let mut res = Bund::init();
+        match res.init_lib() {
+            Ok(_) => {},
+            Err(err) => {
+                log::error!("Error during init_stdlib: {}", err);
+            }
+        };
         res
     }
 }
