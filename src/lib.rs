@@ -12,9 +12,7 @@ pub mod bundcore_display;
 pub mod bundcore_init_stdlib;
 pub mod bundcore_vm_bootstrap;
 
-use crate::bundcore::Bund;
-
-pub type BundInitFn  = fn(&mut Bund) -> Result<&mut Bund, Error>;
+pub type BundInitFn  = fn(&mut bundcore::Bund) -> Result<&mut bundcore::Bund, Error>;
 
 lazy_static! {
     pub static ref STDLIB: Mutex<HashMap<String, BundInitFn>> = {

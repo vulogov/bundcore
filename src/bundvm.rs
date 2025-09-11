@@ -6,7 +6,7 @@ use std::collections::HashMap;
 use std::sync::Mutex;
 use easy_error::{Error, bail};
 
-use crate::Bund;
+use crate::bundcore;
 
 lazy_static! {
     pub static ref BOOTSTRAP: Mutex<HashMap<String, String>> = {
@@ -18,7 +18,7 @@ lazy_static! {
 #[derive(Clone)]
 pub struct BundVM {
     pub id:             String,
-    pub adam:           Bund,
+    pub adam:           bundcore::Bund,
 }
 
 impl BundVM {
@@ -26,7 +26,7 @@ impl BundVM {
         let vmid = nanoid!();
         Self {
             id:             vmid,
-            adam:             Bund::new(),
+            adam:           bundcore::Bund::new(),
         }
     }
 
