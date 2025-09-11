@@ -5,10 +5,12 @@ use std::collections::HashMap;
 use std::sync::Mutex;
 
 pub mod bundcore;
+pub mod bundvm;
 pub mod bundcore_eval;
 pub mod bundcore_run;
 pub mod bundcore_display;
 pub mod bundcore_init_stdlib;
+pub mod bundcore_vm_bootstrap;
 
 use crate::bundcore::Bund;
 
