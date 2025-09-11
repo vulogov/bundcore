@@ -15,4 +15,6 @@ clean:
 	cargo clean
 	cargo update
 
-all:
+commit:
+	aic -ac
+	git push

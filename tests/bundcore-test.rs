@@ -1,3 +1,7 @@
+use easy_error::{Error};
+
+use bundcore::bundcore::Bund;
+
 const TEST1: &str = r#"
 //
 //
@@ -24,6 +28,10 @@ const TEST4: &str = r#"
 //
 "Test value" 41 42
 "#;
+
+fn init_stdlib(vm: &mut Bund) -> Result<&mut Bund, Error> {
+    Ok(vm)
+}
 
 #[cfg(test)]
 mod tests {
@@ -56,6 +64,12 @@ mod tests {
         let mut bc = Bund::new();
         let val = bc.run(TEST4).expect("Fail to parse BUND program");
         assert_eq!(val.expect("Expecting value").cast_int().unwrap(), 42 as i64);
+    }
+
+    #[test]
+    fn test_run3_init_stdlib() {
+        let mut bc = Bund::new();
+        let _ = bc.init_stdlib("test", init_stdlib).unwrap();
     }
 
 }

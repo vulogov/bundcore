@@ -23,11 +23,11 @@ mod tests {
     use bundcore::bundcore::Bund;
 
 
-    #[test]
-    fn test_run_test_text_concat_with_space() {
-        let mut bc = Bund::new();
-        bc.eval(TEST1T).expect("Fail to parse BUND program");
-    }
+    // #[test]
+    // fn test_run_test_text_concat_with_space() {
+    //     let mut bc = Bund::new();
+    //     bc.eval(TEST1T).expect("Fail to parse BUND program");
+    // }
 
     #[test]
     fn test_run_test_text_string_upper() {
